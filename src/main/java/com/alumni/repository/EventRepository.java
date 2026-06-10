@@ -1,0 +1,19 @@
+package com.alumni.repository;
+
+import com.alumni.entity.Event;
+import com.alumni.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Repository
+public interface EventRepository extends JpaRepository<Event, Long> {
+
+    List<Event> findByEventDateAfterOrderByEventDateAsc(LocalDateTime now);
+
+    List<Event> findByOrganizer(User organizer);
+
+    List<Event> findByOrderByEventDateDesc();
+}
